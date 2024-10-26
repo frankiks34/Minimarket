@@ -4,17 +4,27 @@
  */
 package minimarket;
 
+import vistas.Inicio;
+
+
+
 /**
  *
  * @author Frank
  */
 public class Minimarket {
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+      
+        
+        Inicio inicio = new Inicio();
+
+       inicio.setVisible(true);
+       inicio.setLocationRelativeTo(null);
     }
     
+
 }
+    
+

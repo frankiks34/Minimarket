@@ -10,4 +10,9 @@ package Logica;
  */
 public class TipoCompra {
     
+    private int id;
+    private String nombre;
+    private String telefono;
+    private String contrasenia;
+    
 }
