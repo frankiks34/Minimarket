@@ -8,14 +8,10 @@ import Persistencia.ControladorPersistencia;
 import java.util.ArrayList;
 import java.util.List;
 import Logica.Vendedor;
+import Logica.Cliente;
 
 
 
-
-/**
- *
- * @author Frank
- */
 public class Controladora{
     
      ControladorPersistencia control =new ControladorPersistencia() ;
@@ -93,10 +89,49 @@ public class Controladora{
     }
      
     
-        public List<Vendedor> obtenerVendedores() {
+    public List<Vendedor> obtenerVendedores() {
     
          return control.getvendedores();
     
     }
+ 
+   
+        public void creartipodatos()
+        {
+          control.crearTipo();
+        }
+
+    public void agregarClienteALista(String nombre, String direccion, String telefono, String a) {
+       
+          TipoCliente tipoCliente = control.findTipoClienteByDescripcion(a);
+
+    if (tipoCliente != null) {
+       
+        Cliente nuevoCliente = new Cliente();
+        nuevoCliente.setNombre(nombre);
+        nuevoCliente.setDireccion(direccion);
+        nuevoCliente.setTelefono(telefono);
+        nuevoCliente.setTipo(tipoCliente);
+
   
+        control.crearCliente(nuevoCliente);
+        
+
+       
+        tipoCliente.getClientes().add(nuevoCliente);
+
+      
+      control.actualizarTipoCliente(tipoCliente);
+        
+    } else {
+        System.out.println("No se encontró el tipo de cliente: " + a);
+    }
+    
+    }
+
+    public List<Cliente> getclientes() {
+       return control.getclientes();  
+    }
+        
+      
 }

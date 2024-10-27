@@ -4,6 +4,9 @@
  */
 package Persistencia;
 
+import Logica.Cliente;
+import static Logica.Cliente_.tipoCliente;
+import Logica.TipoCliente;
 import Logica.Vendedor;
 import java.util.List;
 
@@ -16,12 +19,15 @@ public class ControladorPersistencia {
     
     
     VendedorJpaController vendedor;
+    TipoClienteJpaController tipo;
+    ClienteJpaController clien;
     
-    
-  public ControladorPersistencia() {
+
+    public ControladorPersistencia() {
     
         vendedor =new VendedorJpaController();
-    
+      tipo = new TipoClienteJpaController();
+      clien = new ClienteJpaController();
     }
     
   public void crearVe(Vendedor a){
@@ -42,4 +48,31 @@ public class ControladorPersistencia {
   vendedor.edit(a);
   }
   
+  public void crearTipo()
+  {
+  tipo.initializeTiposClientes();
+  }
+  
+  
+   public void crearCliente(Cliente a){
+  
+  clien.create(a);
+     
+  }
+ 
+   public TipoCliente findTipoClienteByDescripcion(String descripcion)
+   {
+       
+   return tipo.findTipoClienteByDescripcion(descripcion);
+   }
+
+   public void actualizarTipoCliente(TipoCliente tipoCliente)
+   {
+   tipo.actualizarTipoCliente(tipoCliente);
+   }
+
+    public List<Cliente> getclientes() {
+    return clien.findClienteEntities();
+    }
+   
 }

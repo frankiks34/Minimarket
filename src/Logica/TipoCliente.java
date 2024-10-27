@@ -17,7 +17,6 @@ import javax.persistence.Table;
  * @author Frank
  */
 @Entity
-@Table(name = "Tipo_Cliente")
 public class TipoCliente {
       @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +24,9 @@ public class TipoCliente {
       
     private String descripcion;
 
-     @OneToMany(mappedBy = "tipoCliente")
+      @OneToMany(mappedBy = "tipoCliente")
     private List<Cliente> clientes;
+
     
        public TipoCliente() {
       

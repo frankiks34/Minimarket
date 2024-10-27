@@ -3,6 +3,8 @@
   <persistence-unit name="MinimarketPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>Logica.Vendedor</class>
+    <class>Logica.TipoCliente</class>
+    <class>Logica.Cliente</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/market?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

@@ -4,6 +4,7 @@
  */
 package minimarket;
 
+import Logica.Controladora;
 import vistas.Inicio;
 
 
@@ -17,6 +18,8 @@ public class Minimarket {
     
     public static void main(String[] args) {
       
+          Controladora controladora = new Controladora();
+          controladora.creartipodatos();
         
         Inicio inicio = new Inicio();
 

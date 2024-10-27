@@ -18,6 +18,7 @@ public class Inicio extends javax.swing.JFrame {
  Controladora a = new Controladora();
     public Inicio() {
         initComponents();
+       
     }
 
    
