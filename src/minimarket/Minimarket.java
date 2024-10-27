@@ -20,7 +20,7 @@ public class Minimarket {
       
           Controladora controladora = new Controladora();
           controladora.creartipodatos();
-        
+ controladora.crearcategorias();
         Inicio inicio = new Inicio();
 
        inicio.setVisible(true);

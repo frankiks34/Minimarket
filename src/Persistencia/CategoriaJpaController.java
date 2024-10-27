@@ -4,7 +4,8 @@
  */
 package Persistencia;
 
-import Logica.TipoCliente;
+import Logica.Categoria;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,48 +17,28 @@ import javax.persistence.Query;
  *
  * @author Frank
  */
-public class TipoClienteJpaController {
-    
-      private EntityManagerFactory emf = null;
+public class CategoriaJpaController{
+     private EntityManagerFactory emf = null;
 
-    public TipoClienteJpaController(EntityManagerFactory emf) {
+    public CategoriaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
 
-    public TipoClienteJpaController() {
+    public CategoriaJpaController() {
         emf = Persistence.createEntityManagerFactory("MinimarketPU");
-        
     }
 
     private EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
-    
-     public void initializeTiposClientes() {
-        EntityManager em = getEntityManager();
-        try {
-            long count = (long) em.createQuery("SELECT COUNT(t) FROM TipoCliente t").getSingleResult();
-            if (count == 0) {
-             
-                create(new TipoCliente("Regular"));
-                create(new TipoCliente("VIP"));
-      
-            }
-        } finally {
-            em.close();
-        }
-    }
-    
-    
-    
-    // Crear un nuevo tipo de cliente
-    public void create(TipoCliente tipoCliente) {
+    // Crear una nueva categoría
+    public void create(Categoria categoria) {
         EntityManager em = getEntityManager();
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
-            em.persist(tipoCliente);
+            em.persist(categoria);
             tx.commit();
         } catch (Exception e) {
             if (tx.isActive()) {
@@ -69,13 +50,13 @@ public class TipoClienteJpaController {
         }
     }
 
-    // Editar un tipo de cliente existente
-    public void edit(TipoCliente tipoCliente) throws Exception {
+  
+    public void edit(Categoria categoria) throws Exception {
         EntityManager em = getEntityManager();
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
-            tipoCliente = em.merge(tipoCliente);
+            categoria = em.merge(categoria);
             tx.commit();
         } catch (Exception e) {
             if (tx.isActive()) {
@@ -87,14 +68,14 @@ public class TipoClienteJpaController {
         }
     }
 
-    // Eliminar un tipo de cliente
+
     public void destroy(Integer id) throws Exception {
         EntityManager em = getEntityManager();
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
-            TipoCliente tipoCliente = em.getReference(TipoCliente.class, id);
-            em.remove(tipoCliente);
+            Categoria categoria = em.getReference(Categoria.class, id);
+            em.remove(categoria);
             tx.commit();
         } catch (Exception e) {
             if (tx.isActive()) {
@@ -106,26 +87,25 @@ public class TipoClienteJpaController {
         }
     }
 
-    // Encontrar un tipo de cliente por ID
-    public TipoCliente findTipoCliente(Integer id) {
+    public Categoria findCategoria(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(TipoCliente.class, id);
+            return em.find(Categoria.class, id);
         } finally {
             em.close();
         }
     }
 
-    // Obtener todos los tipos de cliente
-    public List<TipoCliente> findTipoClienteEntities() {
-        return findTipoClienteEntities(true, -1, -1);
+
+    public List<Categoria> findCategoriaEntities() {
+        return findCategoriaEntities(true, -1, -1);
     }
 
-    // Obtener un rango de tipos de cliente
-    public List<TipoCliente> findTipoClienteEntities(boolean all, int maxResults, int firstResult) {
+ 
+    public List<Categoria> findCategoriaEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
-            Query q = em.createQuery("SELECT t FROM TipoCliente t");
+            Query q = em.createQuery("SELECT c FROM Categoria c");
             if (!all) {
                 q.setMaxResults(maxResults);
                 q.setFirstResult(firstResult);
@@ -135,25 +115,34 @@ public class TipoClienteJpaController {
             em.close();
         }
     }
-    
+
    
-    public TipoCliente findTipoClienteByDescripcion(String descripcion) {
+    public int getCategoriaCount() {
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT COUNT(c) FROM Categoria c");
+            return ((Long) q.getSingleResult()).intValue();
+        } finally {
+            em.close();
+        }
+    }
+    
+    public Categoria findCategoriaByNombre(String nombre) {
     EntityManager em = getEntityManager();
     try {
-        Query query = em.createQuery("SELECT t FROM TipoCliente t WHERE t.descripcion = :descripcion");
-        query.setParameter("descripcion", descripcion);
-        return (TipoCliente) query.getSingleResult();
+        Query query = em.createQuery("SELECT c FROM Categoria c WHERE c.nombre = :nombre");
+        query.setParameter("nombre", nombre);
+        return (Categoria) query.getSingleResult();
     } finally {
         em.close();
     }
 }
-    
-    public void actualizarTipoCliente(TipoCliente tipoCliente) {
+    public void actualizarCategoria(Categoria categoria) {
     EntityManager em = getEntityManager();
     EntityTransaction tx = em.getTransaction();
     try {
         tx.begin();
-        em.merge(tipoCliente);
+        em.merge(categoria);
         tx.commit();
     } catch (Exception e) {
         if (tx.isActive()) {
@@ -164,22 +153,20 @@ public class TipoClienteJpaController {
         em.close();
     }
 }
-    
-    
-    
-    
 
-    // Contar el número total de tipos de cliente
-    public int getTipoClienteCount() {
+   
+    public void initializeCategorias() {
         EntityManager em = getEntityManager();
         try {
-            Query q = em.createQuery("SELECT COUNT(t) FROM TipoCliente t");
-            return ((Long) q.getSingleResult()).intValue();
+            long count = (long) em.createQuery("SELECT COUNT(c) FROM Categoria c").getSingleResult();
+            if (count == 0) {
+                create(new Categoria("Electrónica"));
+                create(new Categoria("Ropa"));
+                create(new Categoria("Alimentos"));
+        
+            }
         } finally {
             em.close();
         }
     }
-    
-    
-    
 }

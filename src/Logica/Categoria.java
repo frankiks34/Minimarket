@@ -4,17 +4,20 @@
  */
 package Logica;
 
+import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Frank
  */
 @Entity
-public class Categoria {
+public class Categoria implements Serializable {
     
     
      @Id
@@ -23,11 +26,20 @@ public class Categoria {
     
     private String nombre;
 
-    public Categoria(int id, String nombre) {
-        this.id = id;
+    
+    @OneToMany(mappedBy = "categoria")
+    private List<Producto> productos;
+    
+    
+    public Categoria( String nombre) {
+       
         this.nombre = nombre;
     }
-
+ public Categoria( ) {
+       
+        
+    }
+    
     public int getId() {
         return id;
     }
@@ -42,6 +54,14 @@ public class Categoria {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
     }
     
     

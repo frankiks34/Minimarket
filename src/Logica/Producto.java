@@ -22,17 +22,32 @@ public class Producto {
     private int id;
     private String nombre;
     private float precio;
+    private String descripcion ;
     private int stock;
     
     @ManyToOne
-    @JoinColumn(name = "Categoria")
-    private String categoria;
+    @JoinColumn(name = "Categoria_id")
+    private Categoria categoria;
 
-    public Producto(int id, String nombre, float precio, int stock, String categoria) {
+    public Producto(int id, String nombre, float precio, int stock,String descripcion, Categoria categoria) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
+        this.descripcion=descripcion;
+        this.categoria = categoria;
+    }
+
+    
+     public Producto() {
+     
+    }
+    
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
@@ -68,14 +83,15 @@ public class Producto {
         this.stock = stock;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
-    
+
+   
     
     
     

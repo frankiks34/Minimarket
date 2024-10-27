@@ -15,4 +15,6 @@ public class TipoCompra {
     private String telefono;
     private String contrasenia;
     
+    
+    
 }

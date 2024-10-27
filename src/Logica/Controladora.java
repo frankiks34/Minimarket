@@ -133,5 +133,43 @@ public class Controladora{
        return control.getclientes();  
     }
         
+    
+     public void crearcategorias()
+        {
+        control.crearcategoria();
+        }
+    
+       public void agregarProductoALista( String nombre, float precio, int stock,String descripcion, String categorias) {
+       
+          Categoria categoria = control.findCategoriaByNombre(categorias);
+
+    if (categoria != null) {
+       
+        Producto producto = new Producto();
+        producto.setNombre(nombre);
+        producto.setPrecio(precio);
+        producto.setStock(stock);
+        producto.setDescripcion(descripcion);
+        producto.setCategoria(categoria);
+        control.crearProducto(producto);
+  
+      
+       categoria.getProductos().add(producto);
+
+      
+      control.actualizarCategoria(categoria);
+        
+    } else {
+        System.out.println("No se encontró el tipo de categoria: " + categorias);
+    }
+    
+      
+    
+    }
+
+     public List<Producto> getproductos(){
+       return control.getproductos();
+    }
+    
       
 }

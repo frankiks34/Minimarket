@@ -134,7 +134,7 @@ public class cambiocontrasenia extends javax.swing.JFrame {
                     Logger.getLogger(cambiocontrasenia.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
-                cambiocontrasenia men = new cambiocontrasenia();
+                ContraAviso men = new ContraAviso();
             men.setVisible(true);
 
             this.dispose(); //
