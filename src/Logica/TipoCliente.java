@@ -4,10 +4,12 @@
  */
 package Logica;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -20,12 +22,21 @@ public class TipoCliente {
       @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+      
     private String descripcion;
 
-    public TipoCliente(int id, String descripcion) {
-        this.id = id;
+     @OneToMany(mappedBy = "tipoCliente")
+    private List<Cliente> clientes;
+    
+       public TipoCliente() {
+      
+    }
+
+      public TipoCliente(String descripcion) {
         this.descripcion = descripcion;
     }
+    
+    
 
     public int getId() {
         return id;
@@ -41,6 +52,14 @@ public class TipoCliente {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
     }
     
     

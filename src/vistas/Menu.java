@@ -41,6 +41,7 @@ public class Menu extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -75,7 +76,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, 207, 36));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 207, 36));
 
         jButton5.setBackground(new java.awt.Color(102, 204, 255));
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -86,7 +87,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 240, 36));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 220, 240, 36));
 
         jButton6.setBackground(new java.awt.Color(102, 204, 255));
         jButton6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -97,7 +98,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 207, 36));
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, 207, 36));
 
         jButton7.setBackground(new java.awt.Color(102, 204, 255));
         jButton7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -119,7 +120,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton8ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 207, 36));
+        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 207, 36));
 
         jButton9.setBackground(new java.awt.Color(102, 204, 255));
         jButton9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -130,7 +131,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton9ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, 207, 36));
+        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 207, 36));
 
         jButton10.setBackground(new java.awt.Color(102, 204, 255));
         jButton10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -141,18 +142,29 @@ public class Menu extends javax.swing.JFrame {
                 jButton10ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 370, 207, 36));
+        getContentPane().add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 400, 207, 36));
 
         jButton11.setBackground(new java.awt.Color(102, 204, 255));
         jButton11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton11.setText("Ver lista de vendedores");
+        jButton11.setText("Registrar Clientes");
         jButton11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 6, true));
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 207, 36));
+        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 207, 36));
+
+        jButton12.setBackground(new java.awt.Color(102, 204, 255));
+        jButton12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton12.setText("Ver lista de Clientes");
+        jButton12.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 6, true));
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 207, 36));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/imagenes/WhatsApp Image 2024-10-24 at 1.44.51 PM.jpeg"))); // NOI18N
         jLabel3.setText("jLabel3");
@@ -194,7 +206,19 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+
+        cambiocontrasenia con = new cambiocontrasenia();
+          con.setVisible(true);
+        this.dispose();  
+        
+        
+        
+        
+        
+            
+            
+            
+        
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -203,21 +227,32 @@ public class Menu extends javax.swing.JFrame {
     
     System.out.println("Sesión cerrada por el usuario.");
 
-    Menu menu = new Menu();
+    Inicio menu = new Inicio();
     menu.setVisible(true);
     this.dispose();  
 
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
+      
+        Inicio menu = new Inicio();
+    menu.setVisible(true);
+    this.dispose();  
+        
+        
+        
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton12ActionPerformed
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

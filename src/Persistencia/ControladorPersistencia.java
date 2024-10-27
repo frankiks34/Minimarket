@@ -37,5 +37,9 @@ public class ControladorPersistencia {
   
   }
           
-    
+  public void cambiarContr(Vendedor a) throws Exception  
+  {
+  vendedor.edit(a);
+  }
+  
 }

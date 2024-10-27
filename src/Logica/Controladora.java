@@ -7,7 +7,7 @@ package Logica;
 import Persistencia.ControladorPersistencia;
 import java.util.ArrayList;
 import java.util.List;
-
+import Logica.Vendedor;
 
 
 
@@ -41,13 +41,24 @@ public class Controladora{
         
         lista=control.getvendedores();
         
+        
+        System.out.println("Usuario logueado es : " + usuario + "contrasenia logueada es "+ contrasenia);
+    
+        for (Vendedor pro : lista) {
+                System.out.println("Usuarios logueado son : " + pro.getNombre() + "contrasenias logueadas son "+ pro.getContrasenia());
+       }
+      
+        
+        
        for (Vendedor pro : lista) {
            if (pro.getNombre().equals(usuario)) {
                if (pro.getContrasenia().equals(contrasenia)) {
                    ingreso = true;
                }
                else{         
-                  ingreso=false ;          
+                  ingreso=false ;    
+                  
+              
                }      
            }
        }
@@ -74,7 +85,18 @@ public class Controladora{
          return null;
     
     }
+
+    public void cambiarcontra(Vendedor nuevacontrasenia) throws Exception {
+           
+        control.cambiarContr(nuevacontrasenia);
+ 
+    }
      
     
+        public List<Vendedor> obtenerVendedores() {
+    
+         return control.getvendedores();
+    
+    }
   
 }
