@@ -7,6 +7,10 @@ package vistas;
 import Logica.Controladora;
 import Logica.TipoCliente;
 import Logica.Vendedor;
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import minimarket.Sesion;
 
 /**
@@ -19,6 +23,8 @@ public class Registrar_Clientes extends javax.swing.JFrame {
     public Registrar_Clientes() {
         initComponents();
         
+        SetImagenLabel(jLabel1,"src/vistas/imagenes/casa.jpeg");
+        
           vendedorentro = Sesion.getUsuarioActual();
         
           if (vendedorentro != null) {
@@ -28,6 +34,20 @@ public class Registrar_Clientes extends javax.swing.JFrame {
             System.out.println("No hay un usuario logueado.");
         }
         
+          
+          
+    }
+    
+    public void SetImagenLabel(JLabel LabelName , String root)
+    {
+    ImageIcon image = new ImageIcon(root);
+    Icon icon = new ImageIcon(
+    image.getImage().getScaledInstance(LabelName.getWidth(), LabelName.getHeight(),Image.SCALE_DEFAULT)
+    );
+       LabelName.setIcon(icon);
+       this.repaint();
+    
+    
     }
 
    
@@ -40,7 +60,6 @@ public class Registrar_Clientes extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         textField5 = new java.awt.TextField();
-        jButton6 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         textField6 = new java.awt.TextField();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -48,6 +67,7 @@ public class Registrar_Clientes extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -62,7 +82,6 @@ public class Registrar_Clientes extends javax.swing.JFrame {
         });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, 120, 36));
 
-        textField3.setText("textField1");
         textField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textField3ActionPerformed(evt);
@@ -76,19 +95,11 @@ public class Registrar_Clientes extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 460, 44));
-
-        textField5.setText("textField1");
         getContentPane().add(textField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 288, 33));
-
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/imagenes/pngtree-black-house-icon-png-image_6498106.jpg"))); // NOI18N
-        jButton6.setText("jButton3");
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 140, 40));
 
         jLabel7.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel7.setText("Direccion");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 103, 44));
-
-        textField6.setText("textField1");
         getContentPane().add(textField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 288, 33));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Regular", "VIP", "" }));
@@ -117,6 +128,11 @@ public class Registrar_Clientes extends javax.swing.JFrame {
         jLabel6.setToolTipText("");
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 6));
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 810, 450));
+
+        jLabel1.setText("jLabel1");
+        jLabel1.setToolTipText("");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 140, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -156,8 +172,8 @@ public class Registrar_Clientes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;

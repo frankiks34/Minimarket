@@ -7,6 +7,10 @@ package vistas;
 import Logica.Controladora;
 import Logica.Producto;
 import Logica.Vendedor;
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import minimarket.Sesion;
 
 /**
@@ -20,6 +24,7 @@ public class CrearProducto extends javax.swing.JFrame {
     
     public CrearProducto() {
         initComponents();
+         SetImagenLabel(jLabel1,"src/vistas/imagenes/casa.jpeg");
           vendedorentro = Sesion.getUsuarioActual();
         
           if (vendedorentro != null) {
@@ -40,7 +45,6 @@ public class CrearProducto extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         textField5 = new java.awt.TextField();
-        jButton6 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         textField6 = new java.awt.TextField();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -49,6 +53,7 @@ public class CrearProducto extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         textField7 = new java.awt.TextField();
         jLabel11 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -64,7 +69,6 @@ public class CrearProducto extends javax.swing.JFrame {
         });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, 120, 36));
 
-        textField3.setText("textField1");
         textField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textField3ActionPerformed(evt);
@@ -78,19 +82,11 @@ public class CrearProducto extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, 460, 44));
-
-        textField5.setText("textField1");
         getContentPane().add(textField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 288, 33));
-
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/imagenes/pngtree-black-house-icon-png-image_6498106.jpg"))); // NOI18N
-        jButton6.setText("jButton3");
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 140, 40));
 
         jLabel7.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel7.setText("Descripcion");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 130, 44));
-
-        textField6.setText("textField1");
         getContentPane().add(textField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 293, 288, 30));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Electrónica", "Ropa", "Alimentos" }));
@@ -113,16 +109,18 @@ public class CrearProducto extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel8.setText("Nombre");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 90, 50));
-
-        textField7.setText("textField1");
         getContentPane().add(textField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 288, 33));
 
         jLabel11.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel11.setText("Stock");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 150, 44));
 
+        jLabel1.setText("jLabel1");
+        jLabel1.setToolTipText("");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 140, 40));
+
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/imagenes/WhatsApp Image 2024-10-24 at 1.44.51 PM.jpeg"))); // NOI18N
-        jLabel6.setText("jLabel3");
         jLabel6.setToolTipText("");
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 6));
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 810, 500));
@@ -145,7 +143,17 @@ public class CrearProducto extends javax.swing.JFrame {
         jLabel4.setText("El producto se agrego correctamente");
 
     }//GEN-LAST:event_jButton4ActionPerformed
-
+  public void SetImagenLabel(JLabel LabelName , String root)
+    {
+    ImageIcon image = new ImageIcon(root);
+    Icon icon = new ImageIcon(
+    image.getImage().getScaledInstance(LabelName.getWidth(), LabelName.getHeight(),Image.SCALE_DEFAULT)
+    );
+       LabelName.setIcon(icon);
+       this.repaint();
+    
+    
+    }
     private void textField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textField3ActionPerformed
@@ -164,8 +172,8 @@ public class CrearProducto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel4;

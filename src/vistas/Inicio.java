@@ -7,6 +7,10 @@ package vistas;
 import Logica.Controladora;
 import Logica.Vendedor;
 import static Logica.Vendedor_.contrasenia;
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import minimarket.Sesion;
 
 /**
@@ -18,7 +22,7 @@ public class Inicio extends javax.swing.JFrame {
  Controladora a = new Controladora();
     public Inicio() {
         initComponents();
-       
+        SetImagenLabel(jLabel4,"src/vistas/imagenes/casa.jpeg");
     }
 
    
@@ -34,7 +38,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,11 +55,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 360, 214, 36));
-
-        textField2.setText("textField1");
         jPanel1.add(textField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 291, 29));
-
-        textField1.setText("textField1");
         jPanel1.add(textField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 288, 33));
 
         jButton2.setBackground(new java.awt.Color(255, 153, 153));
@@ -77,14 +77,14 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 95, 44));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/imagenes/WhatsApp Image 2024-10-24 at 1.44.51 PM.jpeg"))); // NOI18N
-        jLabel3.setText("jLabel3");
         jLabel3.setToolTipText("");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 6));
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 810, 450));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/imagenes/pngtree-black-house-icon-png-image_6498106.jpg"))); // NOI18N
-        jButton3.setText("jButton3");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 140, 40));
+        jLabel4.setText("jLabel1");
+        jLabel4.setToolTipText("");
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 140, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,6 +103,18 @@ public class Inicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+      public void SetImagenLabel(JLabel LabelName , String root)
+    {
+    ImageIcon image = new ImageIcon(root);
+    Icon icon = new ImageIcon(
+    image.getImage().getScaledInstance(LabelName.getWidth(), LabelName.getHeight(),Image.SCALE_DEFAULT)
+    );
+       LabelName.setIcon(icon);
+       this.repaint();
+    
+    
+    }
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
      
          String usuario =  textField1.getText();
@@ -144,10 +156,10 @@ public class Inicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private java.awt.TextField textField1;
     private java.awt.TextField textField2;

@@ -6,7 +6,11 @@ package vistas;
 
 import Logica.Controladora;
 import Logica.Vendedor;
+import java.awt.Image;
 import java.util.List;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -22,6 +26,7 @@ public class Registrar extends javax.swing.JFrame {
     
     public Registrar() {
         initComponents();
+         SetImagenLabel(jLabel8,"src/vistas/imagenes/casa.jpeg");
     }
 
     
@@ -44,9 +49,9 @@ public class Registrar extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         textField5 = new java.awt.TextField();
-        jButton6 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         jButton1.setBackground(new java.awt.Color(255, 153, 153));
         jButton1.setText("Registrarse");
@@ -97,15 +102,12 @@ public class Registrar extends javax.swing.JFrame {
         });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 400, 214, 36));
 
-        textField3.setText("textField1");
         textField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textField3ActionPerformed(evt);
             }
         });
         getContentPane().add(textField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 291, 29));
-
-        textField4.setText("textField1");
         getContentPane().add(textField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, 288, 33));
 
         jLabel9.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
@@ -118,13 +120,7 @@ public class Registrar extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel5.setText("Usuario");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 95, 44));
-
-        textField5.setText("textField1");
         getContentPane().add(textField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 288, 33));
-
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/imagenes/pngtree-black-house-icon-png-image_6498106.jpg"))); // NOI18N
-        jButton6.setText("jButton3");
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 140, 40));
 
         jLabel7.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel7.setText("Contraseña");
@@ -136,9 +132,26 @@ public class Registrar extends javax.swing.JFrame {
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 6));
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 810, 450));
 
+        jLabel8.setText("jLabel1");
+        jLabel8.setToolTipText("");
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 140, 40));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+      public void SetImagenLabel(JLabel LabelName , String root)
+    {
+    ImageIcon image = new ImageIcon(root);
+    Icon icon = new ImageIcon(
+    image.getImage().getScaledInstance(LabelName.getWidth(), LabelName.getHeight(),Image.SCALE_DEFAULT)
+    );
+       LabelName.setIcon(icon);
+       this.repaint();
+    
+    
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -187,7 +200,6 @@ public class Registrar extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -195,6 +207,7 @@ public class Registrar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private java.awt.TextField textField1;
     private java.awt.TextField textField2;

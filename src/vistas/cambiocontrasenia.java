@@ -6,8 +6,12 @@ package vistas;
 
 import Logica.Controladora;
 import Logica.Vendedor;
+import java.awt.Image;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import minimarket.Sesion;
 
 /**
@@ -20,7 +24,7 @@ public class cambiocontrasenia extends javax.swing.JFrame {
   Controladora a = new Controladora();
     public cambiocontrasenia() {
         initComponents();
-        
+         SetImagenLabel(jLabel6,"src/vistas/imagenes/casa.jpeg");
         vendedorentro = Sesion.getUsuarioActual();
         
           if (vendedorentro != null) {
@@ -41,12 +45,12 @@ public class cambiocontrasenia extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
         textField2 = new java.awt.TextField();
         textField3 = new java.awt.TextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -60,8 +64,6 @@ public class cambiocontrasenia extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 350, 110, 36));
-
-        textField1.setText("textField1");
         getContentPane().add(textField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 288, 33));
 
         jButton2.setBackground(new java.awt.Color(255, 153, 153));
@@ -81,15 +83,7 @@ public class cambiocontrasenia extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jLabel2.setText(".");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 330, 44));
-
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/imagenes/pngtree-black-house-icon-png-image_6498106.jpg"))); // NOI18N
-        jButton3.setText("jButton3");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 140, 40));
-
-        textField2.setText("textField1");
         getContentPane().add(textField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 288, 33));
-
-        textField3.setText("textField1");
         getContentPane().add(textField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 288, 33));
 
         jLabel4.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
@@ -106,6 +100,10 @@ public class cambiocontrasenia extends javax.swing.JFrame {
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 6));
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 810, 450));
 
+        jLabel6.setToolTipText("");
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 140, 40));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -116,7 +114,17 @@ public class cambiocontrasenia extends javax.swing.JFrame {
 
             this.dispose(); 
     }//GEN-LAST:event_jButton1ActionPerformed
-
+  public void SetImagenLabel(JLabel LabelName , String root)
+    {
+    ImageIcon image = new ImageIcon(root);
+    Icon icon = new ImageIcon(
+    image.getImage().getScaledInstance(LabelName.getWidth(), LabelName.getHeight(),Image.SCALE_DEFAULT)
+    );
+       LabelName.setIcon(icon);
+       this.repaint();
+    
+    
+    }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
         String contrasenia =  textField2.getText();
@@ -158,12 +166,12 @@ public class cambiocontrasenia extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private java.awt.TextField textField1;
     private java.awt.TextField textField2;
     private java.awt.TextField textField3;
