@@ -21,8 +21,13 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
          SetImagenLabel(jLabel1,"src/vistas/imagenes/casa.jpeg");
-        vendedorentro = Sesion.getUsuarioActual();
-        
+        //El metodo de seguridad de usuario logeado ,sino esta logeado no puede inggresar ,tambien existe el boton cerrar sesion para que asi no dejen la sesion activa y puedan ver la inforamcion de las cuentas
+         vendedorentro = Sesion.getUsuarioActual();
+        if (vendedorentro != null) {
+    System.out.println("Usuario logueado: " + vendedorentro.getNombre());
+} else {
+    System.out.println("No hay un usuario logueado.");
+}
           if (vendedorentro != null) {
             System.out.println("Usuario logueado: " + vendedorentro.getNombre());
           
@@ -75,7 +80,7 @@ public class Menu extends javax.swing.JFrame {
 
         jButton7.setBackground(new java.awt.Color(102, 204, 255));
         jButton7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton7.setText("Actualizar el Stock");
+        jButton7.setText("Registro De Ventas");
         jButton7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 6, true));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,7 +91,7 @@ public class Menu extends javax.swing.JFrame {
 
         jButton8.setBackground(new java.awt.Color(102, 204, 255));
         jButton8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton8.setText("Generar Venta");
+        jButton8.setText("Stock");
         jButton8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 6, true));
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,7 +146,7 @@ public class Menu extends javax.swing.JFrame {
 
         jButton13.setBackground(new java.awt.Color(102, 204, 255));
         jButton13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton13.setText("Registrar Compras");
+        jButton13.setText("Vender");
         jButton13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 6, true));
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,11 +197,17 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+  
+        vista_Ventas menu = new vista_Ventas();
+        menu.setVisible(true);
+        this.dispose(); 
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+     vista_stock vista=new vista_stock();
+         vista.setVisible(true);
+        this.dispose();  
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -245,7 +256,9 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
+      vista_venta menu = new vista_venta();
+       menu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton13ActionPerformed
 
 

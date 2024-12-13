@@ -10,6 +10,8 @@ import static Logica.Cliente_.tipoCliente;
 import Logica.Producto;
 import Logica.TipoCliente;
 import Logica.Vendedor;
+import Logica.Venta;
+import Logica.VentaProducto;
 import java.util.List;
 
 
@@ -24,6 +26,8 @@ public class ControladorPersistencia {
     TipoClienteJpaController tipo;
     ClienteJpaController clien;
     CategoriaJpaController catego;
+    VentaJpaController venta;
+    VentaProductoJpaController ventaProducto;
 
     public ControladorPersistencia() {
     
@@ -32,6 +36,8 @@ public class ControladorPersistencia {
       clien = new ClienteJpaController();
       producto= new  ProductoJpaController();
       catego = new CategoriaJpaController();
+      venta = new VentaJpaController();
+              ventaProducto= new VentaProductoJpaController();
     }
     
   public void crearVe(Vendedor a){
@@ -105,4 +111,28 @@ public class ControladorPersistencia {
     }
     
     
+    public void crearVenta(Venta ventaEntity) {
+        venta.create(ventaEntity);
+    }
+
+    public void crearVentaProducto(VentaProducto ventaProductoEntity) {
+        ventaProducto.create(ventaProductoEntity);
+    }
+
+    public List<Venta> getVentas() {
+        return venta.findVentaEntities();
+    }
+
+    public List<VentaProducto> getVentaProductos() {
+        return ventaProducto.findVentaProductoEntities();
+    }
+    public void actualizarProducto(Producto productos) {
+    try {
+       
+       producto.edit(productos);   // Editar el producto en la base de datos
+    } catch (Exception e) {
+        e.printStackTrace();
+        System.out.println("Error al actualizar el producto.");
+    }
+}
 }

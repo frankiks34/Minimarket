@@ -6,7 +6,9 @@ package vistas;
 
 import Logica.Cliente;
 import Logica.Controladora;
+import Logica.Producto;
 import Logica.Vendedor;
+import static com.mysql.cj.conf.PropertyKey.logger;
 import java.awt.Image;
 import java.util.List;
 import javax.swing.Icon;
@@ -14,54 +16,67 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 import minimarket.Sesion;
-import java.io.IOException;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
+import vistas.Menu;
 
-public class VistaClientes extends javax.swing.JFrame {
-private static final Logger LOGGER = Logger.getLogger(VistaClientes.class.getName());    
+import java.util.logging.Logger;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+
+/**
+ *
+ * @author Frank
+ */
+public class vista_stock extends javax.swing.JFrame {
+    private static final Logger logger = Logger.getLogger(vista_stock.class.getName());
+  private Vendedor vendedorentro;    
+  Controladora a = new Controladora();
+      private DefaultTableModel modelo;
+      
+    public vista_stock() {
+        initComponents();
+        SetImagenLabel(jLabel1,"src/vistas/imagenes/casa.jpeg");
+        vendedorentro = Sesion.getUsuarioActual();
+          if (vendedorentro != null) {
+            System.out.println("Usuario logueado: " + vendedorentro.getNombre());
+          
+        } else {
+            System.out.println("No hay un usuario logueado.");
+        }
+            modelo = (DefaultTableModel) jTable1.getModel();
+                  cargarProductosEnTabla();
+
+          
+    }
+    
+     private void cargarProductosEnTabla() {
+         
+          logger.info("Cargando productos en la tabla...");
+        List<Producto> productos = a.getproductos();  // Obtener lista de productos de la base de datos
+        
+           if (productos == null || productos.isEmpty()) {
+            logger.warning("No se encontraron productos en la base de datos.");  // Log de advertencia
+        } else {
+            logger.info("Productos cargados correctamente.");
+        }
+        modelo.setRowCount(0);  // Limpiar la tabla antes de cargar los nuevos datos
+
+        // Iterar sobre los productos y agregarlos a la tabla
+        for (Producto producto : productos) {
+            modelo.addRow(new Object[]{
+                producto.getId(),  // Suponiendo que "Codigo" es un atributo del Producto
+                producto.getNombre(),
+                producto.getPrecio(),
+                producto.getStock()  // Mostrar el stock actual
+            });
+        }
+    }
+     
      
 
-    private Vendedor vendedorentro;    
-  Controladora a = new Controladora();
+   
+      
     
-      private DefaultTableModel modelo;
-    
-    public VistaClientes() {
-        initComponents();
-        
-        // registro de eventos importantes en un archivo de log. Esto ayuda a monitorear el estado de la aplicación, identificar posibles errores y mantener un historial de eventos.
-        
-            try {
-            FileHandler fileHandler = new FileHandler("app.log", true); // Crea el archivo de log
-            fileHandler.setFormatter(new SimpleFormatter()); // Configura el formato de log
-            LOGGER.addHandler(fileHandler); // Añade el FileHandler al logger
-        } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "Error al configurar el archivo de log", e);
-        }
-         SetImagenLabel(jLabel1,"src/vistas/imagenes/casa.jpeg");
-        vendedorentro = Sesion.getUsuarioActual();
-        
-          if (vendedorentro != null) {
-        LOGGER.info("Usuario logueado: " + vendedorentro.getNombre());
-    } else {
-        LOGGER.warning("No hay un usuario logueado.");
-    }
-        
-         modelo = (DefaultTableModel) jTable1.getModel();
-        
-             List<Cliente> clientes = a.getclientes();
-          // Registrar en el log el número de clientes que se cargaron
-    LOGGER.info("Cargando clientes. Total: " + clientes.size() + " clientes.");
-        for (Cliente cliente : clientes) {
-            modelo.addRow(new Object[]{cliente.getNombre(), cliente.getDireccion(), cliente.getTelefono(),cliente.getTipo().getDescripcion()});
-        }
-        
-    }
-
-  
+      
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -70,8 +85,8 @@ private static final Logger LOGGER = Logger.getLogger(VistaClientes.class.getNam
         jButton5 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -87,7 +102,7 @@ private static final Logger LOGGER = Logger.getLogger(VistaClientes.class.getNam
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 410, 120, 36));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 420, 120, 36));
 
         jTable1.setBackground(new java.awt.Color(204, 204, 204));
         jTable1.setForeground(new java.awt.Color(255, 255, 255));
@@ -99,14 +114,14 @@ private static final Logger LOGGER = Logger.getLogger(VistaClientes.class.getNam
                 {null, null, null, null}
             },
             new String [] {
-                "Nombre", "Direccion", "Telefono", "Tipo"
+                "codigo", "Nombre", "Precio", "Cantidad"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -121,21 +136,20 @@ private static final Logger LOGGER = Logger.getLogger(VistaClientes.class.getNam
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 740, 330));
 
+        jLabel1.setText("jLabel1");
+        jLabel1.setToolTipText("");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 140, 40));
+
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/imagenes/WhatsApp Image 2024-10-24 at 1.44.51 PM.jpeg"))); // NOI18N
         jLabel6.setText("jLabel3");
         jLabel6.setToolTipText("");
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 6));
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 810, 450));
 
-        jLabel1.setText("jLabel1");
-        jLabel1.setToolTipText("");
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 140, 40));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-      public void SetImagenLabel(JLabel LabelName , String root)
+ public void SetImagenLabel(JLabel LabelName , String root)
     {
     ImageIcon image = new ImageIcon(root);
     Icon icon = new ImageIcon(
@@ -146,16 +160,17 @@ private static final Logger LOGGER = Logger.getLogger(VistaClientes.class.getNam
     
     
     }
-    
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
- 
+
         Menu menu = new Menu();
         menu.setVisible(true);
 
         this.dispose(); //
-
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    /**
+     * @param args the command line arguments
+     */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

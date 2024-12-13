@@ -171,5 +171,106 @@ public class Controladora{
        return control.getproductos();
     }
     
-      
+            
+   public void actualizarProducto(int idProducto, String nuevoNombre, float nuevoPrecio, int nuevoStock, String nuevaDescripcion, String nuevaCategoria) {
+    try {
+        // Buscar el producto por ID
+        Producto producto = control.getproductos().stream()
+                .filter(p -> p.getId() == idProducto)
+                .findFirst()
+                .orElse(null);
+
+        if (producto != null) {
+            // Actualizar los campos del producto
+            producto.setNombre(nuevoNombre);
+            producto.setPrecio(nuevoPrecio);
+            producto.setStock(nuevoStock);
+            producto.setDescripcion(nuevaDescripcion);
+            
+            // Buscar y actualizar la categoría
+            Categoria categoria = control.findCategoriaByNombre(nuevaCategoria);
+            if (categoria != null) {
+                producto.setCategoria(categoria);
+            } else {
+                System.out.println("La categoría proporcionada no existe.");
+            }
+            
+            // Guardar el producto actualizado en la base de datos
+            control.crearProducto(producto);  // Este método puede crear o actualizar el producto dependiendo de la implementación de persistencia
+        } else {
+            System.out.println("Producto con ID " + idProducto + " no encontrado.");
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        System.out.println("Error al actualizar el producto.");
+    }
+}
+public void crearVenta( List<VentaProducto> productosVendidos) {
+    try {
+        // Crear una nueva venta
+        Venta venta = new Venta(productosVendidos);
+
+        // Guardar la venta en la base de datos
+        control.crearVenta(venta);
+
+        // Para cada producto vendido, guardamos la relación entre la venta y los productos
+        for (VentaProducto ventaProducto : productosVendidos) {
+            control.crearVentaProducto(ventaProducto);
+        }
+
+        System.out.println("Venta creada exitosamente con ID: " + venta.getId());
+    } catch (Exception e) {
+        e.printStackTrace();
+        System.out.println("Error al crear la venta.");
+    }
+}
+public void actualizarStock(List<VentaProducto> productosVendidos) {
+    try {
+        for (VentaProducto ventaProducto : productosVendidos) {
+            Producto producto = ventaProducto.getProducto();
+            int cantidadVendida = ventaProducto.getCantidad();
+            
+            // Reducir el stock del producto
+            if (producto.getStock() >= cantidadVendida) {
+                producto.setStock(producto.getStock() - cantidadVendida);
+                control.actualizarProducto(producto);  // Usar el método de actualización de producto
+            } else {
+                System.out.println("No hay suficiente stock para el producto: " + producto.getNombre());
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        System.out.println("Error al actualizar el stock.");
+    }
+}
+public List<Venta> obtenerVentas() {
+    try {
+        return control.getVentas();  // Retorna todas las ventas realizadas
+    } catch (Exception e) {
+        e.printStackTrace();
+        System.out.println("Error al obtener las ventas.");
+        return new ArrayList<>();  // Devuelve una lista vacía en caso de error
+    }
+}
+public List<VentaProducto> obtenerDetallesVenta(int idVenta) {
+    try {
+        // Buscar la venta por ID
+        Venta venta = control.getVentas().stream()
+                .filter(v -> v.getId() == idVenta)
+                .findFirst()
+                .orElse(null);
+
+        if (venta != null) {
+            return venta.getProductos();  // Devuelve los productos vendidos en esa venta
+        } else {
+            System.out.println("Venta con ID " + idVenta + " no encontrada.");
+            return new ArrayList<>();
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        System.out.println("Error al obtener los detalles de la venta.");
+        return new ArrayList<>();
+    }
+}
+
 }

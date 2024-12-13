@@ -7,6 +7,9 @@
     <class>Logica.Cliente</class>
     <class>Logica.Producto</class>
     <class>Logica.Categoria</class>
+    <class>.VentaProducto</class>
+    <class>Logica.VentaProducto</class>
+    <class>Logica.Venta</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/market?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
